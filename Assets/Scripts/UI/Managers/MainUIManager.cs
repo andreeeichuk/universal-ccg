@@ -20,8 +20,6 @@ namespace UniversalCCG.UI.Managers
 		private void Awake()
 		{
 			InitializePages();
-			if(_defaultPage!=null)
-				SetCurrentPage(_defaultPage);
 		}
 
 		#endregion
