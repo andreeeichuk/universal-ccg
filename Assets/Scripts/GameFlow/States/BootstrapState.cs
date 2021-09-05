@@ -23,6 +23,6 @@
 			
 		}
 
-		private void EnterMenu() => stateMachine.Enter<LoadSceneState, string>(MenuSceneName);
+		private void EnterMenu() => stateMachine.Enter<LoadSceneState, string, MainMenuState>(MenuSceneName);
 	}
 }

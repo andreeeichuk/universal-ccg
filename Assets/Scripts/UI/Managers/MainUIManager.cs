@@ -8,9 +8,7 @@ namespace UniversalCCG.UI.Managers
 	public class MainUIManager : MonoBehaviour, IUIManager
 	{
 		[SerializeField] private Transform pagesParent;
-		
-		private IPage _defaultPage;
-		
+
 		public IPage CurrentPage { get; private set; }
 
 		private Dictionary<Type, IPage> _pagesByType;
@@ -26,13 +24,16 @@ namespace UniversalCCG.UI.Managers
 
 		public void SetCurrentPage<TPage>() where TPage : IPage
 		{
-			IPage page = _pagesByType[typeof(TPage)];
+			_pagesByType.TryGetValue(typeof(TPage), out IPage page);
 			SetCurrentPage(page);
 		}
 
 		private void SetCurrentPage(IPage page)
 		{
 			CurrentPage?.Hide();
+			
+			if(page == null) return;
+
 			CurrentPage = page;
 			page.Show();
 		}
@@ -46,7 +47,6 @@ namespace UniversalCCG.UI.Managers
 				IPage page = pageTransform.GetComponent<IPage>();
 				if(page==null) continue;
 				_pagesByType[page.GetType()] = page;
-				_defaultPage ??= page;
 			}
 		}
 	}

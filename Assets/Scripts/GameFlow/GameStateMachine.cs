@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UniversalCCG.Core.CommonInterfaces;
 using UniversalCCG.GameFlow.States;
+using UniversalCCG.UI.Managers;
 
 namespace UniversalCCG.GameFlow
 {
@@ -10,12 +11,13 @@ namespace UniversalCCG.GameFlow
 		private readonly Dictionary<Type, IExitableState> _states;
 		private IExitableState _currentState;
 
-		public GameStateMachine(SceneLoader sceneLoader)
+		public GameStateMachine(SceneLoader sceneLoader, MainUIManager mainUIManager)
 		{
 			_states = new Dictionary<Type, IExitableState>
 			{
 				[typeof(BootstrapState)] = new BootstrapState(this, sceneLoader),
-				[typeof(LoadSceneState)] = new LoadSceneState(this, sceneLoader)
+				[typeof(LoadSceneState)] = new LoadSceneState(this, sceneLoader, mainUIManager),
+				[typeof(MainMenuState)] = new MainMenuState(this, sceneLoader, mainUIManager)
 			};
 		}
 		
@@ -29,6 +31,14 @@ namespace UniversalCCG.GameFlow
 		{
 			TState state = ChangeState<TState>();
 			state.Enter(payload);
+		}
+		
+		public void Enter<TState, TPayload, TNextState>(TPayload payload) 
+			where TState : class, IPayloadedStateWithFollowingState<TPayload> 
+			where TNextState : class, IState
+		{
+			TState state = ChangeState<TState>();
+			state.Enter<TNextState>(payload);
 		}
 
 		private TState ChangeState<TState>() where TState : class, IExitableState
