@@ -3,6 +3,7 @@
 	public class BootstrapState : BaseState
 	{
 		private const string BootSceneName = "Boot";
+		private const string MenuSceneName = "Menu";
 		private readonly SceneLoader _sceneLoader;
 
 		public BootstrapState(GameStateMachine stateMachine, SceneLoader sceneLoader) : base(stateMachine)
@@ -22,6 +23,6 @@
 			
 		}
 
-		private void EnterMenu() => stateMachine.Enter<LoadSceneState, string>("Menu");
+		private void EnterMenu() => stateMachine.Enter<LoadSceneState, string>(MenuSceneName);
 	}
 }
