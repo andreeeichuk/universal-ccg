@@ -1,4 +1,4 @@
-﻿namespace UniversalCCG.UI.Interfaces
+﻿namespace UniversalCCG.UI.Pages
 {
 	public interface IPage
 	{

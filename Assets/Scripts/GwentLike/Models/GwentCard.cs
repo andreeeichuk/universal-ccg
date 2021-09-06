@@ -1,4 +1,4 @@
-﻿using UniversalCCG.CommonCCG.Models;
+﻿using UniversalCCG.CommonCCG.Models.Cards;
 
 namespace UniversalCCG.GwentLike.Models
 {

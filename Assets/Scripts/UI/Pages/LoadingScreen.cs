@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
-using UniversalCCG.UI.Interfaces;
 
 namespace UniversalCCG.UI.Pages
 {

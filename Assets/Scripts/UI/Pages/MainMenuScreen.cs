@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UniversalCCG.UI.Interfaces;
 
 namespace UniversalCCG.UI.Pages
 {
